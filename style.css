@@ -1,0 +1,571 @@
+/* ======== 1. Import Google Font ======== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ======== Global Styles ======== */
+:root {
+    --primary-color: #8be9fd; /* Lighter blue for primary actions */
+    --secondary-color: #bd93f9; /* Purple for secondary accents */
+    --bg-color: #282a36; /* Deep dark background */
+    --bg-alt-color: #383a59; /* Slightly lighter dark for alternating sections */
+    --text-color: #f8f8f2; /* Light text */
+    --text-muted: #a0a0a0; /* Muted light text */
+    --heading-color: #f8f8f2; /* Light headings */
+    --border-color: #44475a; /* Darker border */
+    --shadow: 0 4px 12px rgba(0,0,0,0.2);
+    --shadow-hover: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ======== 2. Custom Scrollbar ======== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased; 
+    
+    position: relative; /* Added for background aura positioning */
+    overflow-x: hidden; /* Prevents horizontal scroll from auras */
+}
+
+/* ======== Background Aura Effect ======== */
+body::before {
+    content: '';
+    position: fixed; /* This keeps it in the viewport */
+    z-index: -1; /* Puts it behind all content */
+    top: 0; /* Position top-left */
+    left: 0;
+    width: 600px;
+    height: 600px;
+    /* Creates the blue glow */
+    background: radial-gradient(circle, var(--primary-color), transparent 60%);
+    opacity: 0.1; /* Very subtle */
+    filter: blur(100px); /* Softens the glow */
+    /* Pushes it partially off-screen */
+    transform: translate(-50%, -50%); 
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    bottom: 0; /* Position bottom-right */
+    right: 0;
+    width: 500px;
+    height: 500px;
+    /* Creates the purple glow */
+    background: radial-gradient(circle, var(--secondary-color), transparent 60%);
+    opacity: 0.15;
+    filter: blur(120px);
+    /* Pushes it partially off-screen */
+    transform: translate(50%, 50%);
+}
+
+section, header, footer {
+    padding: 80px 20px; 
+    max-width: 960px;
+    margin: 0 auto;
+    /* Added z-index to ensure content stays above auras */
+    position: relative;
+    z-index: 2;
+}
+
+/* UPDATED: Transparent Section Backgrounds */
+section:nth-of-type(even) { /* Experience, Skills */
+    background-color: rgba(40, 42, 54, 0.7); /* 70% transparent --bg-color */
+}
+section:nth-of-type(odd) { /* About, Projects */
+    background-color: rgba(56, 58, 89, 0.7); /* 70% transparent --bg-alt-color */
+}
+/* Ensure header is also transparent */
+header {
+    background-color: rgba(40, 42, 54, 0.7);
+}
+
+
+h1, h3 {
+    color: var(--heading-color);
+    font-weight: 700; 
+}
+h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* ======== 3. "Pill" Section Headings ======== */
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    /* Pill Style */
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: var(--bg-color); /* Dark text on gradient */
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    /* This centers the pill */
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--secondary-color);
+}
+
+
+/* ======== 4. Glassmorphism Navigation ======== */
+nav {
+    width: 100%;
+    background: rgba(40, 42, 54, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Nav must be on top of everything */
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+}
+.nav-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.nav-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ======== 5. Home/Header Enhancements ======== */
+#home {
+    min-height: calc(100vh - 60px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 50px; 
+    width: 100%;
+    /* flex-direction: row-reverse; */ /* Uncomment to swap photo/text */
+}
+.home-photo {
+    flex-basis: 250px; 
+    flex-shrink: 0; 
+}
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0px rgba(139, 233, 253, 0.7); }
+    100% { box-shadow: 0 0 0 15px rgba(139, 233, 253, 0); }
+}
+.profile-photo {
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 5px solid var(--primary-color); 
+    animation: pulse-border 2.5s infinite;
+    cursor: pointer; /* <-- ADD THIS LINE */
+}
+.home-text {
+    flex-basis: 70%;
+}
+#home h1 {
+    font-size: 3.5rem; 
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap; /* Keeps name on one line */
+}
+#home .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 0 0 20px 0; 
+}
+#home .skills-preview {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+.cta-buttons {
+    margin-top: 25px;
+}
+.btn {
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 5px;
+    display: inline-block;
+    border: 2px solid transparent; 
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ======== 6. Card-Based Experience Section ======== */
+#experience {
+    /* Base background is already set */
+}
+.job {
+    margin-bottom: 30px;
+    border-bottom: none; 
+    /* UPDATED: Transparent Card Style */
+    background: rgba(56, 58, 89, 0.8); /* 80% transparent --bg-alt-color */
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+.job:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary-color);
+}
+.job:last-child {
+    margin-bottom: 0;
+}
+.job-company {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+.job-date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+.job ul {
+    padding-left: 20px;
+    color: var(--text-color);
+}
+.job ul li {
+    margin-bottom: 8px;
+}
+
+
+/* ======== 7. Project Card Image Styles ======== */
+#projects {
+    /* Base background is already set */
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.project-card {
+    /* UPDATED: Transparent Card Style */
+    background: rgba(40, 42, 54, 0.8); /* 80% transparent --bg-color */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    padding: 0; 
+    overflow: hidden; 
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px; 
+    object-fit: contain; /* <-- Fix for your tall robot image */
+    background-color: #191a24; /* <-- Background for 'contain' */
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+.project-content {
+    padding: 30px; 
+}
+.project-card .tech-stack {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-top: 15px;
+    font-weight: 500;
+}
+.btn-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-right: 15px;
+    display: inline-block;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+.btn-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    transform: translateX(3px);
+}
+
+
+/* ======== 8. Concise Card-Based Skills Section (UPDATED) ======== */
+#skills {
+    /* Base background is already set */
+}
+
+/* This is the new single card container */
+.skills-container-card {
+    background: rgba(56, 58, 89, 0.8); /* 80% transparent --bg-alt-color */
+    padding: 20px 30px 15px 30px; /* Adjusted padding */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+/* This styles the H3 headings inside the card */
+.skills-container-card h3 {
+    color: var(--heading-color);
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    margin-top: 10px; /* Added space above headings */
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px; /* Adds space between skill groups */
+}
+
+.skills-list li {
+    background-color: var(--border-color);
+    color: var(--text-color);
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    /* New styles for icon alignment */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+.skills-list li:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+}
+
+
+/* ======== 9. Contact (Footer) ======== */
+#contact {
+    background-color: #191a24; /* Kept this solid for a good page anchor */
+    color: #f4f4f4;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+#contact h2 {
+    color: #fff;
+    /* Apply pill style to contact heading too */
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: var(--bg-color);
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+#contact p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+#contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+#contact a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+.social-links {
+    margin-top: 20px;
+}
+.social-links a {
+    margin: 0 15px;
+    font-size: 1.3rem; 
+}
+.social-links a:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+/* ======== 10. Media Queries ======== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .nav-container {
+        justify-content: center;
+    }
+    .header-content {
+        flex-direction: column; 
+        text-align: center; 
+    }
+    .home-text {
+        order: 2; 
+    }
+    .home-photo {
+        order: 1; 
+        margin-bottom: 30px; 
+    }
+    .profile-photo {
+        width: 180px; 
+        height: 180px;
+        animation: none; 
+    }
+    
+    /* Update for mobile text wrapping */
+    #home h1 {
+        font-size: 2.5rem;
+        white-space: normal; /* Allow wrapping on mobile */
+    }
+    #home .subtitle {
+        font-size: 1.2rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======== 11. Image Modal Styles ======== */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 200; /* Sit on top of everything */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    
+    /* Added for centering */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    /* Pop-in animation */
+    animation-name: zoom;
+    animation-duration: 0.4s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 45px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
