@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #282a36;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #44475a;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #bd93f9;
+  }
+}
+
+@layer components {
+  .section-title {
+    background: linear-gradient(90deg, #8be9fd, #bd93f9);
+    color: #282a36;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #8be9fd, #bd93f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-nav {
+    background: rgba(40, 42, 54, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .portfolio-card {
+    background: rgba(56, 58, 89, 0.8);
+    border: 1px solid #44475a;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: #bd93f9;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: #8be9fd;
+    color: #282a36;
+    border: 2px solid #8be9fd;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #bd93f9;
+    border-color: #bd93f9;
+    color: #282a36;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: #bd93f9;
+    border: 2px solid #bd93f9;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    background-color: #bd93f9;
+    color: #282a36;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: #44475a;
+    color: #f8f8f2;
+    cursor: default;
+  }
+
+  .skill-pill:hover {
+    background-color: #8be9fd;
+    color: #282a36;
+    transform: scale(1.05);
+  }
+
+  .tech-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: rgba(68, 71, 90, 0.8);
+    color: #8be9fd;
+    border: 1px solid rgba(139, 233, 253, 0.2);
+  }
+}
+
+@layer utilities {
+  .aura-cyan {
+    background: radial-gradient(circle, #8be9fd, transparent 60%);
+  }
+
+  .aura-purple {
+    background: radial-gradient(circle, #bd93f9, transparent 60%);
+  }
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0px rgba(139, 233, 253, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 15px rgba(139, 233, 253, 0);
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2.5s infinite;
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.4s ease;
+}
