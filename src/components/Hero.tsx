@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { personalInfo } from "@/lib/data";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function Hero() {
           {/* Profile photo */}
           <div className="flex-shrink-0">
             <Image
-              src="/your-photo.jpeg"
+              src={withBasePath("/your-photo.jpeg")}
               alt="Shruthi Basavaraju"
               width={250}
               height={250}
@@ -65,7 +66,7 @@ export default function Hero() {
             &times;
           </button>
           <Image
-            src="/your-photo.jpeg"
+            src={withBasePath("/your-photo.jpeg")}
             alt="Shruthi Basavaraju"
             width={600}
             height={600}

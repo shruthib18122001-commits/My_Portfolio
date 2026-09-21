@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { publications } from "@/lib/data";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Publications() {
   return (
@@ -21,7 +22,7 @@ export default function Publications() {
               {/* Image */}
               <div className="h-48 relative overflow-hidden bg-dracula-dark border-b border-dracula-border">
                 <Image
-                  src={pub.image}
+                  src={withBasePath(pub.image)}
                   alt={pub.title}
                   fill
                   className="object-contain p-4"
